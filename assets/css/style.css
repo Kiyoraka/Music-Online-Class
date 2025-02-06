@@ -212,6 +212,106 @@ body {
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Course Section */
+
+#courses .glass-card {
+    text-align: left;
+    max-width: 1200px;
+    padding: 4rem;
+}
+
+#courses h2 {
+    font-size: 3.5rem;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.course-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.course-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00FCFF;
+    text-shadow: 0 0 10px rgba(0, 252, 255, 0.3);
+}
+
+.course-details ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.course-details p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Register Section */
+
+#register .glass-card {
+    text-align: center;
+    max-width: 800px;
+}
+
+#register h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#register h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+}
+
+
+#register p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: left;
+}
+
 /* Mobile Menu Button */
 .menu-btn {
     display: none;
