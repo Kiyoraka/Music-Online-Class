@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Music Class</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Floating Music Notes -->
@@ -45,54 +46,92 @@
         <!-- About Section -->
         <section id="about" class="section">
             <div class="glass-card">
-                <h2>About Us</h2>
-                <p>Your journey to musical excellence starts here</p>
+                <h2>Listen to AI-Created Music</h2>
+                <p>Experience the quality of AI-generated songs</p>
+                
+                <div class="music-player">
+                    <div class="song-info">
+                        <div class="song-title">Loading...</div>
+                        <div class="song-artist">AI Generated</div>
+                    </div>
+                    
+                    <div class="progress-area">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="time">
+                            <span class="current">0:00</span>
+                            <span class="duration">0:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <button id="prev" class="control-btn">
+                            <i class="fas fa-backward"></i>
+                        </button>
+                        <button id="play-pause" class="control-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button id="next" class="control-btn">
+                            <i class="fas fa-forward"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Courses Section -->
         <section id="courses" class="section">
             <div class="glass-card">
-                <h2>Available Classes</h2>
+                <div class="pricing-header">
+                    <h2>Start Creating Music Today</h2>
+                    <p>Choose your path to become an AI music producer</p>
+                </div>
                 <div class="courses-grid">
                     <div class="course-card">
-                        <div class="course-content">
-                            <div class="course-main">
-                                <h3>Group Class</h3>
-                                <p class="price">RM50</p>
-                            </div>
-                            <div class="course-features">
-                                <p>📅 15 February 2025</p>
-                                <p>👥 Maximum 50 participants</p>
-                                <p>🎵 Learn AI music creation basics</p>
-                            </div>
+                        <h3>Group Class</h3>
+                        <div class="price-tag">
+                            <span class="currency">RM</span>
+                            <span class="amount">50</span>
                         </div>
+                        <ul class="features-list">
+                            <li>📅 15 February 2025</li>
+                            <li>👥 Maximum 50 participants</li>
+                            <li>🎵 Learn AI music creation basics</li>
+                            <li>📱 Access to learning materials</li>
+                        </ul>
+                        <a href="https://kiyosoftwaretechlab.onpay.my/order/form/1" class="get-plan-btn">GET PLAN</a>
                     </div>
+
                     <div class="course-card">
-                        <div class="course-content">
-                            <div class="course-main">
-                                <h3>One-to-One Class</h3>
-                                <p class="price">RM100</p>
-                            </div>
-                            <div class="course-features">
-                                <p>📅 Flexible scheduling</p>
-                                <p>👤 Personal attention</p>
-                                <p>✨ Customized learning pace</p>
-                            </div>
+                        <h3>One-to-One Class</h3>
+                        <div class="price-tag">
+                            <span class="currency">RM</span>
+                            <span class="amount">100</span>
                         </div>
+                        <ul class="features-list">
+                            <li>📅 Flexible scheduling</li>
+                            <li>👤 Personal attention</li>
+                            <li>✨ Customized learning pace</li>
+                            <li>💡 Personalized feedback</li>
+                        </ul>
+                        <a href="https://kiyosoftwaretechlab.onpay.my/order/form/1" class="get-plan-btn">GET PLAN</a>
                     </div>
+
                     <div class="course-card">
-                        <div class="course-content">
-                            <div class="course-main">
-                                <h3>Song Creation Service</h3>
-                                <p class="price">RM25<span class="per-song"> per song</span></p>
-                            </div>
-                            <div class="course-features">
-                                <p>🎵 AI-generated song</p>
-                                <p>✏️ Basic editing included</p>
-                                <p>🔄 Up to 10 revisions</p>
-                            </div>
+                        <h3>Song Creation</h3>
+                        <div class="price-tag">
+                            <span class="currency">RM</span>
+                            <span class="amount">25</span>
+                            <span class="period">/song</span>
                         </div>
+                        <ul class="features-list">
+                            <li>🎵 AI-generated song</li>
+                            <li>✏️ Basic editing included</li>
+                            <li>🔄 Up to 10 revisions</li>
+                            <li>⭐ Professional quality</li>
+                        </ul>
+                        <a href="https://kiyosoftwaretechlab.onpay.my/order/form/1" class="get-plan-btn">GET PLAN</a>
                     </div>
                 </div>
             </div>
@@ -106,7 +145,7 @@
                     <div class="key-features">
                         <p>🎼 One-time payment for Group lifetime access</p>
                         <p>💡 Step-by-step guidance included</p>
-                        <p>🚀 Start creating immediately after Class</p>
+                        <p>🚀 Start creating immediately after class</p>
                     </div>
                     <a href="https://kiyosoftwaretechlab.onpay.my/order/form/1" class="register-button">
                         REGISTER NOW
@@ -116,5 +155,6 @@
     </main>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/musicplayer.js"></script>
 </body>
 </html>
