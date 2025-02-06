@@ -4,12 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const notesContainer = document.getElementById('floatingNotes');
     
     function createNote() {
+        if (!notesContainer) return;
+        
         const note = document.createElement('div');
         note.className = 'note';
         note.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
-        note.style.left = Math.random() * 100 + 'vw';
-        note.style.animationDuration = 15 + Math.random() * 10 + 's';
-        note.style.opacity = '0';
+        note.style.left = `${Math.random() * 100}%`;
+        note.style.top = `${Math.random() * 100}%`;
+        note.style.animationDuration = `${15 + Math.random() * 10}s`;
         notesContainer.appendChild(note);
         
         // Remove note after animation
@@ -20,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Create initial notes
     for (let i = 0; i < 20; i++) {
-        createNote();
+        setTimeout(() => createNote(), i * 100); // Stagger the creation of initial notes
     }
     
     // Continue creating notes
@@ -30,10 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuBtn = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuBtn.classList.toggle('active');
-    });
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -55,20 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Close mobile menu if open
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    menuBtn.classList.remove('active');
                 }
             }
         });
     });
-
-    // Form submission handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your form submission logic here
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-    }
 });
