@@ -7,16 +7,28 @@ class MusicPlayer {
         // List of songs (add your AI-generated songs here)
         this.songs = [
             {
-                title: "Midnight Protocol",
+                title: "Midnight Protocol (EN)",
                 file: "assets/music/Midnight Protocol.mp3"
             },
             {
-                title: "Wings of Digital Flame",
+                title: "Wings of Digital Flame (EN)",
                 file: "assets/music/Wings of Digital Flame.mp3"
             },
             {
-                title: "AI Electronic Beat",
-                file: "assets/music/song3.mp3"
+                title: "Digital Legacy (JP)",
+                file: "assets/music/Digital Legacy.mp3"
+            },
+            {
+                title: "Endless Night (JP)",
+                file: "assets/music/Owaranai Yoru.mp3"
+            },
+            {
+                title: "Warna Kasih (MY)",
+                file: "assets/music/Warna Kasih.mp3"
+            },
+            {
+                title: "Senyuman Pagi (MY)",
+                file: "assets/music/Senyuman Pagi.mp3"
             }
         ];
 
