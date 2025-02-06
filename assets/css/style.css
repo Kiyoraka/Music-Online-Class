@@ -549,4 +549,16 @@ body {
         font-size: 2.5rem;
     }
 
+    #about .glass-card {
+        padding: 2rem;
+    }
+    
+    #about h2 {
+        font-size: 2.5rem;
+    }
+    
+    .music-player {
+        padding: 1.5rem;
+    }
+
 }

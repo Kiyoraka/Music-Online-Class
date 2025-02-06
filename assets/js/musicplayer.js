@@ -11,8 +11,8 @@ class MusicPlayer {
                 file: "assets/music/Midnight Protocol.mp3"
             },
             {
-                title: "AI Rock Fusion",
-                file: "assets/music/song2.mp3"
+                title: "Wings of Digital Flame",
+                file: "assets/music/Wings of Digital Flame.mp3"
             },
             {
                 title: "AI Electronic Beat",
