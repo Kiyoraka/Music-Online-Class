@@ -126,8 +126,8 @@ function createContactFormPopup() {
             <div class="payment-section">
                 <h3>Payment Method</h3>
                 <div class="qr-code">
-                    <img src="assets/images/payment-qr.png" alt="Payment QR Code">
-                    <p>Scan to pay with Touch n Go, Boost, GrabPay, or other e-wallets</p>
+                    <img src="assets/img/payment-QR.jpeg" alt="Payment QR Code">
+                    <p>Scan to pay with Touch n Go, Boost, GrabPay, or other e-wallets </p>
                 </div>
             </div>
             
