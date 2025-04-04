@@ -64,6 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Add this to the end of your assets/js/script.js file
+
 // Function to get URL parameters
 function getUrlParameter(name) {
     name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -100,31 +102,31 @@ function createContactFormPopup() {
         <form id="contactForm">
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="entry.2130727401" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="entry.1224351975" required>
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required>
+                <input type="tel" id="phone" name="entry.1356950233" required>
             </div>
             <div class="form-group">
                 <label for="productType">Select Class Type</label>
-                <select id="productType" name="productType" required>
+                <select id="productType" name="entry.1200065748" required>
                     <option value="">-- Select an option --</option>
                     <option value="Group Class">Group Class (RM25)</option>
                     <option value="One-to-One Class">One-to-One Class (RM50)</option>
                     <option value="Song Creation">Song Creation (RM5/song)</option>
                 </select>
             </div>
-            <input type="hidden" id="affiliate" name="affiliate" value="${affiliateCode || ''}">
+            <input type="hidden" id="affiliate" name="entry.369453213" value="${affiliateCode || 'None'}">
             
             <div class="payment-section">
                 <h3>Payment Method</h3>
                 <div class="qr-code">
-                    <img src="assets/img/QR-Code.jpeg" alt="Payment QR Code">
+                    <img src="assets/images/payment-qr.png" alt="Payment QR Code">
                     <p>Scan to pay with Touch n Go, Boost, GrabPay, or other e-wallets</p>
                 </div>
             </div>
@@ -156,47 +158,48 @@ function createContactFormPopup() {
 }
 
 // Handle form submission
-async function handleFormSubmit(e) {
+function handleFormSubmit(e) {
     e.preventDefault();
     
     const formStatus = document.getElementById('formStatus');
     formStatus.innerHTML = '<p>Processing your registration...</p>';
     formStatus.className = 'form-status processing';
     
+    // Get the form data
     const formData = new FormData(e.target);
-    const formProps = Object.fromEntries(formData);
     
-    try {
-        // Replace with your Google Apps Script Web App URL
-        const scriptURL = 'https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec';
-        
-        const response = await fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(formProps),
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            mode: 'no-cors'
-        });
-        
-        // Since we're using no-cors, we can't actually check the response
-        // So we'll just assume it's successful
-        formStatus.innerHTML = '<p>Thank you for registering! We will contact you shortly.</p>';
-        formStatus.className = 'form-status success';
-        
-        // Reset the form
-        e.target.reset();
-        
-        // Close the popup after 3 seconds
+    // Create a hidden iframe for the form submission
+    const iframe = document.createElement('iframe');
+    iframe.name = 'hidden-iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    
+    // Set form attributes for Google Form submission
+    const form = e.target;
+    form.action = 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse'; // Replace with your Google Form ID
+    form.method = 'post';
+    form.target = 'hidden-iframe';
+    
+    // Submit the form
+    form.submit();
+    
+    // Display success message
+    formStatus.innerHTML = '<p>Thank you for registering! We will contact you shortly.</p>';
+    formStatus.className = 'form-status success';
+    
+    // Reset the form after a delay
+    setTimeout(() => {
+        form.reset();
+        // Close the popup after reset
         setTimeout(() => {
             document.getElementById('contactPopup').style.display = 'none';
-        }, 3000);
-        
-    } catch (error) {
-        console.error('Error submitting form:', error);
-        formStatus.innerHTML = '<p>There was an error submitting your form. Please try again or contact us directly.</p>';
-        formStatus.className = 'form-status error';
-    }
+        }, 1000);
+    }, 2000);
+    
+    // Remove the iframe after submission
+    setTimeout(() => {
+        iframe.remove();
+    }, 5000);
 }
 
 // Add click event listener to Register Now button
