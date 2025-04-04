@@ -63,3 +63,151 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Function to get URL parameters
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
+
+// Store affiliate code if present in URL
+let affiliateCode = getUrlParameter('affiliate');
+if (!affiliateCode) {
+    // Check if it's in the path instead of query params
+    const pathMatch = window.location.pathname.match(/affiliate=([^\/&]+)/i);
+    if (pathMatch) {
+        affiliateCode = pathMatch[1];
+    }
+}
+
+// Create and append the contact form popup to the body
+function createContactFormPopup() {
+    const popupOverlay = document.createElement('div');
+    popupOverlay.className = 'popup-overlay';
+    popupOverlay.id = 'contactPopup';
+    popupOverlay.style.display = 'none';
+
+    const popupContent = document.createElement('div');
+    popupContent.className = 'popup-content glass-card';
+
+    popupContent.innerHTML = `
+        <div class="popup-header">
+            <h2>Register for AI Music Class</h2>
+            <span class="close-popup">&times;</span>
+        </div>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="productType">Select Class Type</label>
+                <select id="productType" name="productType" required>
+                    <option value="">-- Select an option --</option>
+                    <option value="Group Class">Group Class (RM25)</option>
+                    <option value="One-to-One Class">One-to-One Class (RM50)</option>
+                    <option value="Song Creation">Song Creation (RM5/song)</option>
+                </select>
+            </div>
+            <input type="hidden" id="affiliate" name="affiliate" value="${affiliateCode || ''}">
+            
+            <div class="payment-section">
+                <h3>Payment Method</h3>
+                <div class="qr-code">
+                    <img src="assets/img/QR-Code.jpeg" alt="Payment QR Code">
+                    <p>Scan to pay with Touch n Go, Boost, GrabPay, or other e-wallets</p>
+                </div>
+            </div>
+            
+            <button type="submit" class="submit-button">Submit Registration</button>
+        </form>
+        <div id="formStatus" class="form-status"></div>
+    `;
+
+    popupOverlay.appendChild(popupContent);
+    document.body.appendChild(popupOverlay);
+
+    // Add event listener to close the popup
+    const closeBtn = popupOverlay.querySelector('.close-popup');
+    closeBtn.addEventListener('click', () => {
+        popupOverlay.style.display = 'none';
+    });
+
+    // Close popup when clicking outside the content
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.style.display = 'none';
+        }
+    });
+
+    // Add form submission handler
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', handleFormSubmit);
+}
+
+// Handle form submission
+async function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    const formStatus = document.getElementById('formStatus');
+    formStatus.innerHTML = '<p>Processing your registration...</p>';
+    formStatus.className = 'form-status processing';
+    
+    const formData = new FormData(e.target);
+    const formProps = Object.fromEntries(formData);
+    
+    try {
+        // Replace with your Google Apps Script Web App URL
+        const scriptURL = 'https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_ID/exec';
+        
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(formProps),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors'
+        });
+        
+        // Since we're using no-cors, we can't actually check the response
+        // So we'll just assume it's successful
+        formStatus.innerHTML = '<p>Thank you for registering! We will contact you shortly.</p>';
+        formStatus.className = 'form-status success';
+        
+        // Reset the form
+        e.target.reset();
+        
+        // Close the popup after 3 seconds
+        setTimeout(() => {
+            document.getElementById('contactPopup').style.display = 'none';
+        }, 3000);
+        
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        formStatus.innerHTML = '<p>There was an error submitting your form. Please try again or contact us directly.</p>';
+        formStatus.className = 'form-status error';
+    }
+}
+
+// Add click event listener to Register Now button
+document.addEventListener('DOMContentLoaded', () => {
+    createContactFormPopup();
+    
+    const registerButtons = document.querySelectorAll('.register-button');
+    registerButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('contactPopup').style.display = 'flex';
+        });
+    });
+});
