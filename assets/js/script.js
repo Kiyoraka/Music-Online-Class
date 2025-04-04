@@ -176,7 +176,7 @@ function handleFormSubmit(e) {
     
     // Set form attributes for Google Form submission
     const form = e.target;
-    form.action = 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/formResponse'; // Replace with your Google Form ID
+    form.action = 'https://docs.google.com/forms/d/e/1FAIpQLSdlwHAbvEBXWI5CiGkuEZYhCFPZivyUYOJ1opscpqHGARE7Vg/formResponse';
     form.method = 'post';
     form.target = 'hidden-iframe';
     
